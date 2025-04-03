@@ -3,16 +3,22 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Testimoni Carousel</title>
-    <link rel="stylesheet" href="styles.css">
+    <title>Testimoni - ZAMZ STORE</title>
+    <link rel="stylesheet" href="style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" integrity="sha512-Fo3rlrZj/k7ujTnHg4CGR2D7kSs0v4LLanw2qksYuRlEzO+tcaEPQogQ0KaoGN26/zrn20ImR1DfuLWnOo7aA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
 </head>
 <body>
 
-    <section class="testimoni">
-        <h2>Testimoni Pelanggan</h2>
-        
+    <!-- Header -->
+    <header>
+        <h1>Testimoni ZAMZ STORE</h1>
+        <p>Beberapa testimoni ZAMZ STORE</p>
+    </header>
+
+    <!-- Testimoni Carousel -->
+    <div class="testimoni">
         <div class="carousel">
-            <button class="carousel-btn prev" onclick="prevSlide()">&#10094;</button>
             <div class="carousel-inner">
                 <div class="testimoni-item">
                     <img src="testi1.jpg" alt="Testimoni 1">
@@ -27,38 +33,21 @@
                     <p>Testimoni 3</p>
                 </div>
             </div>
-            <button class="carousel-btn next" onclick="nextSlide()">&#10095;</button>
+            <button class="carousel-btn prev" onclick="moveCarousel(-1)">❮</button>
+            <button class="carousel-btn next" onclick="moveCarousel(1)">❯</button>
         </div>
+    </div>
 
-        <!-- Tombol Back to Home -->
-        <div class="back-home">
-            <a href="index.html" class="btn-home">Back to Home</a>
-        </div>
+    <!-- Tombol Kembali ke Home -->
+    <div class="back-home">
+        <a href="index.html" class="btn green"><i class="fas fa-home"></i> Kembali ke Home</a>
+    </div>
 
-    </section>
+    <!-- Footer -->
+    <footer>
+        <p>ZAMZ STORE</p>
+    </footer>
 
-    <script>
-        let currentIndex = 0;
-
-        function showSlide(index) {
-            const carouselInner = document.querySelector('.carousel-inner');
-            const totalSlides = document.querySelectorAll('.testimoni-item').length;
-            if (index >= totalSlides) currentIndex = 0;
-            else if (index < 0) currentIndex = totalSlides - 1;
-            else currentIndex = index;
-            
-            const translateValue = -currentIndex * 100 + "%";
-            carouselInner.style.transform = "translateX(" + translateValue + ")";
-        }
-
-        function nextSlide() {
-            showSlide(currentIndex + 1);
-        }
-
-        function prevSlide() {
-            showSlide(currentIndex - 1);
-        }
-    </script>
-
+    <script src="script.js"></script>
 </body>
 </html>
