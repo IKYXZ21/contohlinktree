@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Testimoni Carousel</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+
+    <section class="testimoni">
+        <h2>Testimoni Pelanggan</h2>
+        
+        <div class="carousel">
+            <button class="carousel-btn prev" onclick="prevSlide()">&#10094;</button>
+            <div class="carousel-inner">
+                <div class="testimoni-item">
+                    <img src="foto1.jpg" alt="Testimoni 1">
+                    <p>"Pelayanan luar biasa, sangat puas!"</p>
+                </div>
+                <div class="testimoni-item">
+                    <img src="foto2.jpg" alt="Testimoni 2">
+                    <p>"Produknya berkualitas tinggi, recommended!"</p>
+                </div>
+                <div class="testimoni-item">
+                    <img src="foto3.jpg" alt="Testimoni 3">
+                    <p>"Pengiriman cepat, bakal beli lagi!"</p>
+                </div>
+            </div>
+            <button class="carousel-btn next" onclick="nextSlide()">&#10095;</button>
+        </div>
+
+        <!-- Tombol Back to Home -->
+        <div class="back-home">
+            <a href="index.html" class="btn-home">Back to Home</a>
+        </div>
+
+    </section>
+
+    <script>
+        let currentIndex = 0;
+
+        function showSlide(index) {
+            const carouselInner = document.querySelector('.carousel-inner');
+            const totalSlides = document.querySelectorAll('.testimoni-item').length;
+            if (index >= totalSlides) currentIndex = 0;
+            else if (index < 0) currentIndex = totalSlides - 1;
+            else currentIndex = index;
+            
+            const translateValue = -currentIndex * 100 + "%";
+            carouselInner.style.transform = "translateX(" + translateValue + ")";
+        }
+
+        function nextSlide() {
+            showSlide(currentIndex + 1);
+        }
+
+        function prevSlide() {
+            showSlide(currentIndex - 1);
+        }
+    </script>
+
+</body>
+</html>

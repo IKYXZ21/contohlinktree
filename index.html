@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Flipcard Kekuatan</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div class="container">
+        <h1 class="title">Ketuk flipcardmu, dan lihatlah kekuatan apa yang kamu miliki!</h1>
+        <div class="flip-card" id="flipCard">
+            <div class="flip-card-inner">
+                <div class="flip-card-front">
+                    <p>Ketuk!</p>
+                </div>
+                <div class="flip-card-back">
+                    <img id="characterImage" src="https://via.placeholder.com/150" alt="Character">
+                    <h2 id="characterName">Character Name</h2>
+                    <p id="characterPower">Kekuatan: Description</p>
+                </div>
+            </div>
+        </div>
+        <div class="real-life-data">
+            <p>Device: <span id="deviceInfo">Loading...</span></p>
+            <p>Lokasi Lu: <span id="locationInfo">Loading...</span></p>
+        </div>
+    </div>
+    <canvas id="particle-canvas"></canvas>
+    <script src="script.js"></script>
+</body>
+</html>
