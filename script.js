@@ -18,7 +18,7 @@ const testimoniData = [];
 for (let i = 1; i <= 20; i++) {
     testimoniData.push({
         img: `testi${i}.jpg`,
-        text: `"TESTIMONI ${i} - Trusted banget, akun langsung dikirim!"`
+        text: `"TESTIMONI ${i} - ZAMZ STORE"`
     });
 }
 
