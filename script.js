@@ -1,5 +1,5 @@
-// Loading Screen
 document.addEventListener("DOMContentLoaded", () => {
+    // Loading screen timeout
     setTimeout(() => {
         document.getElementById("loading-screen").style.display = "none";
         document.getElementById("main-content").style.display = "block";
@@ -8,41 +8,70 @@ document.addEventListener("DOMContentLoaded", () => {
 
 // Show Testimoni Section
 function showTestimoni() {
-    document.getElementById("testimoni").style.display = "block";
-    document.getElementById("testimoni").scrollIntoView({ behavior: "smooth" });
+    let testiSection = document.getElementById("testimoni");
+    testiSection.style.display = "block";
+    testiSection.scrollIntoView({ behavior: "smooth" });
 }
 
-// Carousel Testimoni
-let currentIndex = 0;
-const slides = document.querySelectorAll(".testimoni-item");
-const totalSlides = slides.length;
+// === Generate Testimoni (Auto) ===
+const testimoniData = [];
+for (let i = 1; i <= 20; i++) {
+    testimoniData.push({
+        img: `testi${i}.jpg`,
+        text: `"TESTIMONI ${i} - Trusted banget, akun langsung dikirim!"`
+    });
+}
 
-function moveCarousel(direction) {
-    currentIndex += direction;
+const carouselInner = document.querySelector(".carousel-inner");
 
-    if (currentIndex < 0) {
-        currentIndex = totalSlides - 1;
-    } else if (currentIndex >= totalSlides) {
-        currentIndex = 0;
+// Cek apakah `carouselInner` ada di HTML
+if (carouselInner) {
+    testimoniData.forEach((item, index) => {
+        let div = document.createElement("div");
+        div.classList.add("testimoni-item");
+        div.innerHTML = `
+            <h3>TESTIMONI ${index + 1}</h3>
+            <img src="${item.img}" alt="Testimoni ${index + 1}">
+            <p>${item.text}</p>
+        `;
+        carouselInner.appendChild(div);
+    });
+
+    // === Carousel Navigasi ===
+    let index = 0;
+    let autoSlide;
+    const slides = document.querySelectorAll(".testimoni-item");
+    const totalSlides = slides.length;
+
+    function moveCarousel(step) {
+        index += step;
+        if (index >= totalSlides) index = 0;
+        if (index < 0) index = totalSlides - 1;
+
+        let offset = -index * 100;
+        carouselInner.style.transform = `translateX(${offset}%)`;
     }
 
-    const offset = -currentIndex * 100;
-    document.querySelector(".carousel-inner").style.transform = `translateX(${offset}%)`;
+    // Auto-slide setiap 3 detik
+    function startAutoSlide() {
+        autoSlide = setInterval(() => moveCarousel(1), 3000);
+    }
+
+    function stopAutoSlide() {
+        clearInterval(autoSlide);
+    }
+
+    startAutoSlide();
+
+    // Pause auto-slide saat hover
+    carouselInner.addEventListener("mouseenter", stopAutoSlide);
+    carouselInner.addEventListener("mouseleave", startAutoSlide);
 }
 
-// Auto-slide carousel
-setInterval(() => {
-    moveCarousel(1);
-}, 3000);
-
-// Back to Top Button
+// === Back to Top Button ===
 const backToTopBtn = document.getElementById("back-to-top");
 window.addEventListener("scroll", () => {
-    if (window.scrollY > 300) {
-        backToTopBtn.style.display = "block";
-    } else {
-        backToTopBtn.style.display = "none";
-    }
+    backToTopBtn.style.display = window.scrollY > 300 ? "block" : "none";
 });
 
 backToTopBtn.addEventListener("click", () => {
